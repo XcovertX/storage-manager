@@ -2,12 +2,12 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 // Define the schema for the Tenant model
 export interface Unit extends Document {
-  type: string;
-  number: number;
-  floor:  number;
-  status: string;
-  length: number;
-  width:  number;
+  type:           string;
+  number:         number;
+  floor:          number;
+  status:         string;
+  length:         number;
+  width:          number;
   currentTenant: {type: Schema.Types.ObjectId, ref: 'Tenant'};
   pastTenants:  [{type: Schema.Types.ObjectId, ref: 'Tenant'}];
 }

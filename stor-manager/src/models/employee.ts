@@ -8,6 +8,7 @@ export interface Employee extends Document {
   phone: number;
   type: string;
   location: string;
+  password: string;
 }
 
 const employeeSchema = new Schema<Employee>({
@@ -34,6 +35,10 @@ const employeeSchema = new Schema<Employee>({
     required: true,
   },
   location: {
+    type: String,
+    required: true,
+  },
+  password: {
     type: String,
     required: true,
   },
