@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import dbConnect from '../../lib/dbConnect'
-import Unit from '../../models/unit'
+import Tenant from '../../models/tenant'
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,11 +16,11 @@ export default async function handler(
   switch (method) {
     case 'GET' /* Get a model by its ID */:
       try {
-        const unit = await Unit.findById(id)
-        if (!unit) {
+        const tenant = await Tenant.findById(id)
+        if (!tenant) {
           return res.status(400).json({ success: false })
         }
-        res.status(200).json({ success: true, data: unit })
+        res.status(200).json({ success: true, data: tenant })
       } catch (error) {
         res.status(400).json({ success: false })
       }
@@ -28,14 +28,14 @@ export default async function handler(
 
     case 'PUT' /* Edit a model by its ID */:
       try {
-        const unit = await Unit.findByIdAndUpdate(id, req.body, {
+        const tenant = await Tenant.findByIdAndUpdate(id, req.body, {
           new: true,
           runValidators: true,
         })
-        if (!unit) {
+        if (!tenant) {
           return res.status(400).json({ success: false })
         }
-        res.status(200).json({ success: true, data: unit })
+        res.status(200).json({ success: true, data: tenant })
       } catch (error) {
         res.status(400).json({ success: false })
       }
@@ -43,7 +43,7 @@ export default async function handler(
 
     case 'DELETE' /* Delete a model by its ID */:
       try {
-        const deletedPet = await Unit.deleteOne({ _id: id })
+        const deletedPet = await Tenant.deleteOne({ _id: id })
         if (!deletedPet) {
           return res.status(400).json({ success: false })
         }

@@ -51,5 +51,4 @@ const unitsSchema = new Schema<Units>({
     du10X35: [{type: Schema.Types.ObjectId, ref: 'Unit'}]
 });
 
-// Create the Tenant model using the schema
 export default mongoose.models.Units || mongoose.model<Units>('Units', unitsSchema);

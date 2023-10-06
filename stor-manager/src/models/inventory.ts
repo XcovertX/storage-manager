@@ -52,5 +52,4 @@ const inventorySchema = new Schema<Inventory>({
   },
 });
 
-// Create the Inventory model using the schema
 export default mongoose.models.Inventory || mongoose.model<Inventory>('Inventory', inventorySchema);

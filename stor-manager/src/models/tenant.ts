@@ -2,10 +2,12 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 // Define the schema for the Tenant model
 export interface Tenants extends Document {
-  name: string;
-  email: string;
-  storageUnit: string;
-  moveInDate: Date;
+  name:         string;
+  email:        string;
+  phone:        number;
+  address:     {type: Schema.Types.ObjectId, ref: 'Address'}
+  storageUnit:  string;
+  moveInDate:   Date;
   moveOutDate?: Date;
 }
 
@@ -18,6 +20,15 @@ const tenantSchema = new Schema<Tenants>({
     type: String,
     required: true,
     unique: true,
+  },
+  phone: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
+  address: {
+    type: {type: Schema.Types.ObjectId, ref: 'Address'},
+    required: true,
   },
   storageUnit: {
     type: String,
@@ -32,5 +43,4 @@ const tenantSchema = new Schema<Tenants>({
   },
 });
 
-// Create the Tenant model using the schema
 export default mongoose.models.Tenant || mongoose.model<Tenants>('Tenant', tenantSchema);

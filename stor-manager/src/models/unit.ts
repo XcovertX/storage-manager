@@ -5,6 +5,7 @@ export interface Unit extends Document {
   type: string;
   number: number;
   floor:  number;
+  status: string;
   length: number;
   width:  number;
   currentTenant: {type: Schema.Types.ObjectId, ref: 'Tenant'};
@@ -18,7 +19,11 @@ const unitSchema = new Schema<Unit>({
   },
   floor: {
     type: Number,
-    required: true
+    required: true,
+  },
+  status: {
+    type: String,
+    required: true,
   },
   number: {
     type: Number,
@@ -42,5 +47,4 @@ const unitSchema = new Schema<Unit>({
   }]
 });
 
-// Create the Tenant model using the schema
 export default mongoose.models.Unit || mongoose.model<Unit>('Unit', unitSchema);
