@@ -9,7 +9,7 @@ type Props = {
 
 const Index = ({ tenants }: Props) => {
   return (
-    <>
+    <div className='m-36'>
       {tenants.map((tenant) => (
         <div key={tenant._id}>
           <div className="card">
@@ -17,7 +17,7 @@ const Index = ({ tenants }: Props) => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   )
 }
 
