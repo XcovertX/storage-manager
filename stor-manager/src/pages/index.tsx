@@ -33,7 +33,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     const tenant = JSON.parse(JSON.stringify(doc))
     return tenant
   })
-  console.log(result);
   return { props: { tenants: tenants } }
 }
 
