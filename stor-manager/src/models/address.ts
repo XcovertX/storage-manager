@@ -3,7 +3,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 // Define the schema for the Tenant model
 export interface Address extends Document {
   street:   string;
-  street2:  string;
+  street2?:  string;
   city:     string;
   state:    string;
   zipcode:  number;
@@ -12,22 +12,22 @@ export interface Address extends Document {
 const addressSchema = new Schema<Address>({
   street: {
     type: String,
-    required: true,
+    // required: true,
   },
   street2: {
     type: String,
   },
   city: {
     type: String,
-    required: true,
+    // required: true,
   },
   state: {
     type: String,
-    required: true,
+    // required: true,
   },
   zipcode: {
     type: Number,
-    required: true,
+    // required: true,
   },
 });
 
