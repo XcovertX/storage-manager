@@ -1,3 +1,4 @@
+import MainNavigation from './main-navigation'
 import Meta from './meta'
 
 type Props = {
@@ -10,6 +11,7 @@ const MainLayout = ({ preview, children }: Props) => {
     <>
       <Meta />
       <div className="min-h-screen">
+        <MainNavigation />
         <main>{children}</main>
       </div>
     </>
