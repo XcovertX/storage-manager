@@ -1,8 +1,11 @@
-import Link from 'next/link'
-import dbConnect from '../lib/dbConnect'
+import dbConnect from '@/lib/dbConnect'
+import { CMS_NAME } from '@/lib/constants'
 import Facility, { Facilities } from '@/models/facility'
-import Address from '@/models/address'
 import { GetServerSideProps } from 'next'
+import MainLayout from '@/components/main-layout'
+import Head from 'next/head'
+import Container from '@/components/container'
+import ManagerDashboardPage from './manager-dashboard'
 
 type Props = {
   facilities: Facilities[];
@@ -10,18 +13,14 @@ type Props = {
 
 const Index = ({ facilities }: Props) => {
   return (
-    <div className='m-36 text-white'>
-      {facilities.map((facility) => (
-        <div key={facility._id}>
-          <div className="text-center m-5">
-            <h5 className="text-2xl font-bold">{facility.name}</h5>
-            <h5 className="text-lg">{facility.address.street}</h5>
-            <h5 className="text-lg">{facility.address.city}, {facility.address.state}</h5>
-            <h5 className="text-lg">{facility.address.zipcode}</h5>
-          </div>
-        </div>
-      ))}
-    </div>
+    <MainLayout>
+      <Head>
+        <title>{`${CMS_NAME}`}</title>
+      </Head>
+      <Container>
+        <ManagerDashboardPage />
+      </Container>
+    </MainLayout>
   )
 }
 
