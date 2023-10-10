@@ -1,17 +1,18 @@
+import { useState } from "react";
 import Dropdown from "./dropdown"
+import PropertiesDropdown from "./properties-dropdown"
 import Title from "./title"
 
   const MainNavigation = () => {
+    const [currentOpen, setCurrentOpen] = useState(-1);
+
+    function handleSwitch(key: number){
+        setCurrentOpen(key)
+    }
     return (
     <div className="min-w-screen bg-green-500 flex flex-row justify-start">
         <Title />
-        <Dropdown title="Properties" />
-        <Dropdown title="Units" />
-        <Dropdown title="Tenants" />
-        <Dropdown title="Accounting" />
-        <Dropdown title="Maintenance" />
-        <Dropdown title="Admin" />
-        <Dropdown title="Reporting" />
+        <PropertiesDropdown handleSwitch={handleSwitch} currentOpen={currentOpen} />
     </div>
 
     )

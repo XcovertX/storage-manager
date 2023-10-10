@@ -13,14 +13,14 @@ type Props = {
 
 const Index = ({ facilities }: Props) => {
   return (
-    <MainLayout>
+    <>
       <Head>
         <title>{`${CMS_NAME}`}</title>
       </Head>
       <Container>
         <ManagerDashboardPage />
       </Container>
-    </MainLayout>
+    </>
   )
 }
 
