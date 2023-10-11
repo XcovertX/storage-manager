@@ -36,7 +36,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     const facility = JSON.parse(JSON.stringify(doc))
     return facility
   })
-  console.log(result)
   return { props: { facilities: facilities } }
 }
 

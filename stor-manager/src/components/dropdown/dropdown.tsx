@@ -74,7 +74,7 @@ type Props = {
                 >
                     <div className="flex flex-col justify-start">
                         {dropdownItems.map((item, i) => (
-                            <div className="hover:bg-green-500 w-full justify-start flex flex-row py-2 md:py-3 px-2 md:px-5">
+                            <div key={i} className="hover:bg-green-500 w-full justify-start flex flex-row py-2 md:py-3 px-2 md:px-5">
                             <Entry
                                 key={i}
                                 title={item.title}

@@ -6,7 +6,7 @@ type Props = {
 
 const Container = ({ children }: Props) => {
   return (
-  <div className="grow flex flex-col">
+  <div className="h-full">
     {children}
     {/* <Analytics /> */}
     </div>
