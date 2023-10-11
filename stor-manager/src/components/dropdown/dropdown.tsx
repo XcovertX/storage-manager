@@ -1,7 +1,7 @@
 import DropdownItem from "@/interfaces/dropdown-items";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
-import { CaretIcon } from "./caret-icon";
+import { CaretIcon } from "../caret-icon";
 import Image from "next/image";
 import Link from "next/link";
 type Props = {

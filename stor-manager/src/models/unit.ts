@@ -1,6 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-// Define the schema for the Tenant model
 export interface Unit extends Document {
   type:           string;
   number:         number;

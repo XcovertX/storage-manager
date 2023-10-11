@@ -1,7 +1,10 @@
 import { useState } from "react";
-import Dropdown from "./dropdown"
-import PropertiesDropdown from "./properties-dropdown"
+import Dropdown from "./dropdown/dropdown"
+import PropertiesDropdown from "./dropdown/properties-dropdown"
 import Title from "./title"
+import UnitsDropdown from "./dropdown/units-dropdown";
+import TenantsDropdown from "./dropdown/tenants-dropdown";
+import ReportsDropdown from "./dropdown/reports-dropdown";
 
   const MainNavigation = () => {
     const [currentOpen, setCurrentOpen] = useState(-1);
@@ -12,7 +15,10 @@ import Title from "./title"
     return (
     <div className="min-w-screen bg-green-500 flex flex-row justify-start">
         <Title />
-        <PropertiesDropdown handleSwitch={handleSwitch} currentOpen={currentOpen} />
+        <PropertiesDropdown handleSwitch={handleSwitch} currentOpen={currentOpen} id={0} />
+        <UnitsDropdown handleSwitch={handleSwitch} currentOpen={currentOpen} id={1} />
+        <TenantsDropdown handleSwitch={handleSwitch} currentOpen={currentOpen} id={2} />
+        <ReportsDropdown handleSwitch={handleSwitch} currentOpen={currentOpen} id={3} />
     </div>
 
     )
