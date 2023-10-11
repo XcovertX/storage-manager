@@ -1,4 +1,4 @@
-import DropdownItem from "@/interfaces/dropdown-items";
+import DropdownItem from "@/interfaces/dropdown-item";
 import Dropdown from "./dropdown";
 
 type Props = {
