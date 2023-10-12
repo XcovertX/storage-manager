@@ -1,8 +1,22 @@
 import { Site } from "@/interfaces/site";
 import { useEffect, useState } from "react";
+import SiteMapYelm from "./site-map-yelm";
+import SiteMapBellevue from "./site-map-bellevue";
+import SiteMapPuyallup from "./site-map-puyallup";
+import SiteMapRenton from "./site-map-renton";
 
 type Props = {
     site: Site;
+}
+
+const getMap = (siteName: string) => {
+    switch (siteName){
+        case 'Stor-House, Yelm':     return <SiteMapYelm />
+        case 'Stor-House, Bellevue': return <SiteMapBellevue />
+        case 'Stor-House, Puyallup': return <SiteMapPuyallup />
+        case 'Stor-House, Renton':   return <SiteMapRenton />
+        default: return <h1>...loading...</h1>
+    }
 }
 
 const SiteMap = ({ site }: Props ) => {
@@ -33,7 +47,9 @@ const SiteMap = ({ site }: Props ) => {
                     return <button className="bg-red-700 p-2 m-2" onClick={() => handleFloorSwitch(s)} >Floor {s}</button>
                 })}
                 </div>
-            <div className="h-full bg-red-700 border-4 border-black"></div>
+            <div className="h-full bg-red-700 border-4 border-black">
+                {getMap(site.name)}
+            </div>
         </div>
     )
 }
