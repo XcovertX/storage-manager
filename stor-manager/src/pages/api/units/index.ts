@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import dbConnect from '../../lib/dbConnect'
-import Tenant from '../../models/tenant'
+import dbConnect from '../../../lib/dbConnect'
+import Unit from '../../../models/unit'
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,18 +13,18 @@ export default async function handler(
   switch (method) {
     case 'GET':
       try {
-        const tenants = await Tenant.find({})
-        res.status(200).json({ success: true, data: tenants })
+        const unit = await Unit.find({})
+        res.status(200).json({ success: true, data: unit })
       } catch (error) {
         res.status(400).json({ success: false })
       }
       break
     case 'POST':
       try {
-        const tenant = await Tenant.create(
+        const unit = await Unit.create(
           req.body
         )
-        res.status(201).json({ success: true, data: tenant })
+        res.status(201).json({ success: true, data: unit })
       } catch (error) {
         res.status(400).json({ success: false })
       }

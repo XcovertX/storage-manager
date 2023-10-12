@@ -6,12 +6,14 @@ import MainLayout from '@/components/main-layout'
 import Head from 'next/head'
 import Container from '@/components/container'
 import ManagerDashboardPage from './manager-dashboard'
+import { useSession } from "next-auth/react"
 
 type Props = {
   facilities: Facilities[];
 }
 
 const Index = ({ facilities }: Props) => {
+  const { data: session } = useSession()
   return (
     <>
       <Head>
