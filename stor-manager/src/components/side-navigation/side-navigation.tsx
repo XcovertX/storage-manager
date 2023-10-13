@@ -39,11 +39,11 @@ function SideNav() {
         setOpen(!open);
     }
     const { data, status } = useSession();
-    const loatding = status === 'loading';
+    const loading = status === 'loading';
     return (
         <>
         {
-            data?.accessToken? 
+            data? 
             <div className={`max-w-fit transition-all duration-500 bg-red-500 flex flex-col justify-start`}>
             <button onClick={handleOpen} className='bg-green-400 p-2'>
                 <div className={`rotate-90 w-fit bg-blue-300 `}>

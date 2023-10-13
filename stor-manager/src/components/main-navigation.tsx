@@ -4,6 +4,7 @@ import Title from "./title"
 import UnitsDropdown from "./dropdown/units-dropdown";
 import TenantsDropdown from "./dropdown/tenants-dropdown";
 import ReportsDropdown from "./dropdown/reports-dropdown";
+import { signOut, useSession } from "next-auth/react";
 
   const MainNavigation = () => {
     const [currentOpen, setCurrentOpen] = useState(-1);
@@ -12,17 +13,21 @@ import ReportsDropdown from "./dropdown/reports-dropdown";
         setCurrentOpen(key)
     }
 
-  
+    const { data } = useSession();
     return (
-     
-        <div className="min-w-screen bg-green-500 flex flex-row justify-start">
+      <div className="min-w-screen bg-green-500 flex flex-row justify-between items-center">
+        <div className="flex">
           <Title />
           <PropertiesDropdown handleSwitch={handleSwitch} currentOpen={currentOpen} id={0} key={0} />
           <UnitsDropdown      handleSwitch={handleSwitch} currentOpen={currentOpen} id={1} key={1}/>
           <TenantsDropdown    handleSwitch={handleSwitch} currentOpen={currentOpen} id={2} key={2}/>
           <ReportsDropdown    handleSwitch={handleSwitch} currentOpen={currentOpen} id={3} key={3}/>
         </div>
-
+        <div className="flex items-center">
+          Signed in as {data?.user.email}
+          <button onClick={() => signOut()} className="ml-5 p-2 bg-green-700">sign out</button>
+        </div>
+      </div>
     )
   }
 
