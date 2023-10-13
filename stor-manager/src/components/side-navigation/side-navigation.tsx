@@ -8,6 +8,7 @@ import { HomeIcon } from "../icons/home-icon";
 import { UserIcon } from "../icons/user-icon";
 import { UnitIcon } from "../icons/unit-icon";
 import { StatsIcon } from "../icons/stats-icon";
+import { useSession } from "next-auth/react";
 
 const navigationItems: sideNavigationItem[] = [
     {
@@ -37,8 +38,13 @@ function SideNav() {
     function handleOpen() {
         setOpen(!open);
     }
+    const { data, status } = useSession();
+    const loatding = status === 'loading';
     return (
-        <div className={`max-w-fit transition-all duration-500 bg-red-500 flex flex-col justify-start`}>
+        <>
+        {
+            data?.accessToken? 
+            <div className={`max-w-fit transition-all duration-500 bg-red-500 flex flex-col justify-start`}>
             <button onClick={handleOpen} className='bg-green-400 p-2'>
                 <div className={`rotate-90 w-fit bg-blue-300 `}>
                     <CaretIcon
@@ -52,7 +58,12 @@ function SideNav() {
                     <SideNavigationItem key={i} title={item.title} link={item.link} open={open} icon={item.icon} />
                 ))}
             </div>
-        </div>
+            </div>
+            :
+            <></>
+        }
+        </>
+
     );
   }
   

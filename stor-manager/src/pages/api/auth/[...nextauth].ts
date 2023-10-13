@@ -19,12 +19,17 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        const res = await fetch("@/pages/api/employees", {
+        const credentialDetails = {
+          email: credentials?.email,
+          password: credentials?.password
+        }
+        const res = await fetch(process.env.API_URL + "/api/employees/validate", {
           method: 'POST',
-          body: JSON.stringify(credentials),
+          body: JSON.stringify(credentialDetails),
           headers: { "Content-Type": "application/json" }
         })
         const user = await res.json();
+        console.log(res)
         if (res.ok && user) {
           return user;
         }
@@ -33,15 +38,18 @@ export const authOptions: AuthOptions = {
     })
   ],
   callbacks: {
-    async jwt({ token, account }) {
+    async jwt({ token, account, user }) {
       if (account) {
         token.id_token = account.id_token
         token.provider = account.provider
         token.accessToken = account.access_token
       }
+      if (user) {
+        token.email = user?.data?.email
+      }
       return token
     },
-    async session({ session, token }) {
+    async session({ session, token, user }) {
       session.accessToken = token.accessToken as string
       return session
     },
@@ -68,7 +76,7 @@ export const authOptions: AuthOptions = {
     signOut: '/auth/signout',               // Displays form with sign out button
     error: '/auth/error',                   // Error code passed in query string as ?error=
     verifyRequest: '/auth/verify-request',  // Used for check email page
-    newUser: ''                             // New users will be directed here on first sign in
+    newUser: '/auth/new-user'                            // New users will be directed here on first sign in
   },
   // Events are useful for logging
   // https://next-auth.js.org/configuration/events

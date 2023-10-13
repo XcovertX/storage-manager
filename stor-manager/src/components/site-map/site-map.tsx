@@ -44,7 +44,7 @@ const SiteMap = ({ site }: Props ) => {
                     <h1 className="text-xl ml-5">Floor {activeFloor}</h1>
                 </div>
                 {floors.map(s => {
-                    return <button className="bg-red-700 p-2 m-2" onClick={() => handleFloorSwitch(s)} >Floor {s}</button>
+                    return <button key={s} className="bg-red-700 p-2 m-2" onClick={() => handleFloorSwitch(s)} >Floor {s}</button>
                 })}
                 </div>
             <div className="h-full bg-red-700 border-4 border-black">

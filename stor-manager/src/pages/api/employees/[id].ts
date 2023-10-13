@@ -8,6 +8,7 @@ export default async function handler(
 ) {
   const {
     query: { id },
+    body,
     method,
   } = req
 
@@ -56,5 +57,6 @@ export default async function handler(
     default:
       res.status(400).json({ success: false })
       break
+    
   }
 }
