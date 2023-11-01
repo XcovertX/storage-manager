@@ -57,9 +57,9 @@ const UnitNumber = ({ availableUnits, units, setSelectedUnits }: Props) => {
     }
   }
   return(
-    <div className="flex flex-col w-full h-72 bg-neutral-800 gap-1 p-1">
+    <div className="flex flex-col w-full h-72 bg-neutral-800 gap-1 p-2">
       {FilterUnits}
-      <div className="flex flex-col gap-2 w-full bg-opacity-70 overflow-y-auto pr-1 p-1">
+      <div className="flex flex-col gap-2 w-full bg-opacity-70 overflow-y-auto mr-1">
       
       {filteredAvialableUnits.map(availableUnit => {
         return (

@@ -27,7 +27,7 @@ const Index = ({ facilities, employees }: Props) => {
       </Head>
       <Container>
         {data?.accessToken? 
-        <NewTenant /> : <Login/> }
+        <ManagerDashboardPage /> : <Login/> }
       </Container>
     </>
   )
