@@ -10,8 +10,13 @@ import Address from "../inputs/address";
 import Seperator from "../seperator";
 import Email from "../inputs/email";
 import UnitNumber from "../inputs/unit-number";
+import { Unit } from "@/models/unit";
 
-function NewTenant() {
+type Props = {
+  unit?: Unit
+}
+
+function NewTenant({ unit }: Props) {
   const [email, setEmail]             = useState("");
   const [firstName, setFirstName]     = useState("");
   const [lastName, setLastName]       = useState("");
