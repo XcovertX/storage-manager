@@ -48,9 +48,8 @@ export const authOptions: AuthOptions = {
       
       console.log("jwt user:", user)
       if (user) {
-        token.customerId  = user.id.toString()
-        token.email       = user.email
-        token.userType    = user.user_type
+        token.customerId  = user.data?.id
+        token.email       = user.data?.email
       }
       console.log("jwt token:", token)
       return token

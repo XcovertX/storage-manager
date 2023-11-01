@@ -10,7 +10,7 @@ import ManagerDashboardPage from './manager-dashboard'
 import { useSession } from "next-auth/react"
 import Employee, { Employees } from '@/models/employee'
 import Login from '@/components/buttons/login-btn'
-import NewTenant from '@/components/modals/new-tenant'
+import NewTenant from '@/components/forms/new-tenant-form'
 
 type Props = {
   facilities: Facilities[];
