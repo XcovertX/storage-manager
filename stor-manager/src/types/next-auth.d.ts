@@ -9,16 +9,21 @@ declare module "next-auth" {
    */
   interface Session {
     user: {
-      /** The user's postal address. */
-      address: string
-    } & DefaultSession["user"]
-    accessToken?: string
-    
+      // The user's access type
+      userType: string;
+    } 
+    & DefaultSession["user"]
+    accessToken?: any  
   }
+
   interface User {
+    id: number;
+    contact_information: { email: string }
+    user_type: string;
     data: {
       email: string;
       userType: string;
+      id: string;
     } & DefaultUser['user']
   }
 
@@ -34,5 +39,7 @@ declare module "next-auth/jwt" {
       idToken?:     string
       provider?:    string
       accessToken?: string
+      customerId:   string
+      userType:     string
     }
   }

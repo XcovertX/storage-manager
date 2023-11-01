@@ -29,7 +29,7 @@ export const authOptions: AuthOptions = {
           headers: { "Content-Type": "application/json" }
         })
         const user = await res.json();
-        console.log(res)
+        console.log("res:", res)
         if (res.ok && user) {
           return user;
         }
@@ -39,18 +39,32 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async jwt({ token, account, user }) {
+      console.log("jwt account: ", account)
       if (account) {
         token.id_token = account.id_token
         token.provider = account.provider
         token.accessToken = account.access_token
       }
+      
+      console.log("jwt user:", user)
       if (user) {
-        token.email = user?.data?.email
+        token.customerId  = user.id.toString()
+        token.email       = user.email
+        token.userType    = user.user_type
       }
+      console.log("jwt token:", token)
       return token
     },
     async session({ session, token, user }) {
-      session.accessToken = token.accessToken as string
+      session.accessToken = token
+      
+      if(user) {
+        session.user.userType = token.userType
+        session.user.email = user.email
+      }
+      console.log("session user:", user)
+      console.log("session token:", token)
+      console.log("session session:", session)
       return session
     },
   },

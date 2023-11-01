@@ -1,3 +1,4 @@
+
 import dbConnect from '@/lib/dbConnect'
 import { CMS_NAME } from '@/lib/constants'
 import Facility, { Facilities } from '@/models/facility'
@@ -8,7 +9,8 @@ import Container from '@/components/container'
 import ManagerDashboardPage from './manager-dashboard'
 import { useSession } from "next-auth/react"
 import Employee, { Employees } from '@/models/employee'
-import Login from '@/components/login-btn'
+import Login from '@/components/buttons/login-btn'
+import NewTenant from '@/components/modals/new-tenant'
 
 type Props = {
   facilities: Facilities[];
@@ -17,6 +19,7 @@ type Props = {
 
 const Index = ({ facilities, employees }: Props) => {
   const { data } = useSession()
+  console.log(data)
   return (
     <>
       <Head>
@@ -24,7 +27,7 @@ const Index = ({ facilities, employees }: Props) => {
       </Head>
       <Container>
         {data?.accessToken? 
-        <ManagerDashboardPage /> : <Login/> }
+        <NewTenant /> : <Login/> }
       </Container>
     </>
   )

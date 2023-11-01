@@ -1,3 +1,4 @@
+import NewTenant from "@/components/modals/new-tenant";
 import PropertyInformation from "@/components/property-information";
 import SiteMap from "@/components/site-map/site-map";
 import { Site } from "@/interfaces/site";
@@ -19,7 +20,7 @@ const Yelm: Site = {
 function ManagerDashboardPage() {
     return (
         <div className="p-2  h-full bg-green-500">
-            <SiteMap site={Yelm} />
+            
         </div>
     );
   }

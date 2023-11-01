@@ -1,9 +1,9 @@
 import { useState } from "react";
-import PropertiesDropdown from "./dropdown/properties-dropdown"
+import PropertiesDropdown from "./dropdowns/properties-dropdown"
 import Title from "./title"
-import UnitsDropdown from "./dropdown/units-dropdown";
-import TenantsDropdown from "./dropdown/tenants-dropdown";
-import ReportsDropdown from "./dropdown/reports-dropdown";
+import UnitsDropdown from "./dropdowns/units-dropdown";
+import TenantsDropdown from "./dropdowns/tenants-dropdown";
+import ReportsDropdown from "./dropdowns/reports-dropdown";
 import { signOut, useSession } from "next-auth/react";
 
   const MainNavigation = () => {
