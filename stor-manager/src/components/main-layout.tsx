@@ -18,7 +18,7 @@ const MainLayout = ({  children }: Props) => {
         <Meta />
         <div className="min-h-screen flex flex-col bg-red-900">
           {data? <MainNavigation /> : <></>}
-          <main className='p-2 flex flex-col grow bg-yellow-500'>{children}</main>
+          <main className='p-2 flex flex-col grow bg-yellow-500 overflow-y-auto '>{children}</main>
         </div>
       </>
     )

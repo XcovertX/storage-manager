@@ -1,14 +1,12 @@
 "use client";
 import useLogin from "@/hooks/LoginModal";
 import useRegister from "@/hooks/RegisterModal";
-import { signIn } from "next-auth/react";
 import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import Input from "../inputs/input";
 import Form from "./form";
 import Phone from "../inputs/phone";
 import Address from "../inputs/address";
-import Card from "../inputs/card";
 import Seperator from "../seperator";
 import Email from "../inputs/email";
 import UnitNumber from "../inputs/unit-number";
@@ -22,7 +20,7 @@ function NewTenant() {
   const [state, setState]             = useState("");
   const [country, setCountry]         = useState("");
   const [zipcode, setZip]             = useState("");
-  const [units, setUnits]             = useState<number[]>([])
+  const [units, setUnits]             = useState<string[]>([])
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading]     = useState(false);
   const useRegisterModal:any          = useRegister();
@@ -75,7 +73,7 @@ function NewTenant() {
   );
 
   const bodyContent = (
-    <div className="flex flex-row gap-2">
+    <div className="flex flex-row gap-2 ">
       <div className="flex flex-col gap-2">
         <Seperator label="personal information" color="border-neutral-500/[.7]" />
         <div className='flex flex-row gap-2'>
@@ -123,10 +121,10 @@ function NewTenant() {
           addressType="Shipping"
         />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col h-full gap-2 ">
         <Seperator label="Units" color="border-neutral-500/[.7]" />
         <UnitNumber 
-          availableUnits={[1000, 1001, 1002, 3002, 2202]}
+          availableUnits={['1000', '1001', '1002', '3002', '2202', '2222', '2221', '2220', '2199', '2198', '2197', '3001', '3000', '3222']}
           setSelectedUnits={setUnits}
           units={units}
         />

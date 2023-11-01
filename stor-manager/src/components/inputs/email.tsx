@@ -1,8 +1,8 @@
 import Input from "./input";
 
 type Props = {
-    email:  string;
-    setEmail:     Function;
+    email:    string;
+    setEmail: Function;
 }
 
 const Email = ({ email, setEmail }: Props) => {
