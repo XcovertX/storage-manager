@@ -7,6 +7,7 @@ import ReportsDash from "@/components/reports-dashboard";
 import Seperator from "@/components/seperator";
 import SiteMap from "@/components/site-map/site-map";
 import { Site } from "@/interfaces/site";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Yelm: Site = {
@@ -25,6 +26,7 @@ const Yelm: Site = {
 
 function ManagerDashboardPage() {
   const [units, setUnits] = useState<string[]>([])
+  const router = useRouter()
   return (
     <div className="p-2 h-full bg-green-500 flex-row flex gap-2">
       <div className="flex flex-col gap-2">
@@ -37,10 +39,14 @@ function ManagerDashboardPage() {
               />
               <Button 
                 label="Rent"
-                onClick={() => {}}
+                onClick={() => {router.push('/new-tenant/')}}
               />
               <Button 
                 label="Prospect"
+                onClick={() => {}}
+              />
+              <Button 
+                label="Retail"
                 onClick={() => {}}
               />
             </div>

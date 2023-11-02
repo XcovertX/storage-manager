@@ -1,14 +1,15 @@
 import { HTMLInputTypeAttribute, useEffect, useState } from "react";
 
 type Props = {
-    placeholder: string,
-    value: string | number,
-    onChange: any,
-    disabled: boolean,
-    type: HTMLInputTypeAttribute
+  placeholder: string
+  value:       string | number
+  onChange:    any
+  disabled:    boolean
+  type:        HTMLInputTypeAttribute
+  checked?:    boolean
 }
 
-function Input({ placeholder, value, onChange, disabled, type }: Props) {
+function Input({ placeholder, value, onChange, disabled, type, checked }: Props) {
  
   return (
       <div className="w-full">
@@ -18,6 +19,7 @@ function Input({ placeholder, value, onChange, disabled, type }: Props) {
           value={value}
           placeholder={placeholder}
           type={type}
+          checked={checked}
           className="
           w-full px-2 py-1
           text-md bg-black

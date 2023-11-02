@@ -31,6 +31,7 @@ const navigationItems: sideNavigationItem[] = [
         link: '/reports/',
         icon: <StatsIcon height={20} width={20} />
     },
+    
 ]
 
 function SideNav() {

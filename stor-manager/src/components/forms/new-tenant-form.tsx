@@ -11,6 +11,8 @@ import Seperator from "../seperator";
 import Email from "../inputs/email";
 import UnitNumber from "../inputs/unit-number";
 import { Unit } from "@/models/unit";
+import DemandTypeSelector from "../inputs/demand-selector";
+import GateAccess from "../inputs/gate-access";
 
 type Props = {
   unit?: Unit
@@ -28,6 +30,8 @@ function NewTenant({ unit }: Props) {
   const [units, setUnits]             = useState<string[]>([])
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading]     = useState(false);
+  const [demandType, setDemandType]   = useState('');
+  const [gateAccess, setGateAccess]   = useState('');
   const useRegisterModal:any          = useRegister();
   const useLoginModal:any             = useLogin();
 
@@ -51,7 +55,10 @@ function NewTenant({ unit }: Props) {
           city,
           country,
           state,
-          zipcode
+          zipcode,
+          demandType,
+          gateAccess,
+          units
         }),
       });
       if (!response.ok) {
@@ -73,7 +80,10 @@ function NewTenant({ unit }: Props) {
     city,
     country,
     state,
-    zipcode
+    zipcode,
+    demandType,
+    gateAccess,
+    units
     ]
   );
 
@@ -126,13 +136,22 @@ function NewTenant({ unit }: Props) {
           addressType="Shipping"
         />
       </div>
-      <div className="flex flex-col h-full gap-2 ">
+      <div className="flex flex-col h-full gap-2 w-1/2">
         <Seperator label="Units" color="border-neutral-500/[.7]" />
         <UnitNumber 
           availableUnits={['1000', '1001', '1002', '3002', '2202', '2222', '2221', '2220', '2199', '2198', '2197', '3001', '3000', '3222']}
           setSelectedUnits={setUnits}
           units={units}
         />
+      </div>
+      <div className="flex flex-col h-full gap-2 w-1/2">
+        <Seperator label="Demand Type" color="border-neutral-500/[.7]" />
+        <DemandTypeSelector 
+          demand={demandType}
+          setDemand={setDemandType}
+        />
+        <Seperator label="Gate Access" color="border-neutral-500/[.7]" />
+        <GateAccess accessNumber={gateAccess} setAccessNumber={setGateAccess} />
       </div>
     </div>
   );
@@ -146,6 +165,7 @@ function NewTenant({ unit }: Props) {
       onClose={useRegisterModal.onClose}
       onSubmit={onSubmit}
       body={bodyContent}
+      cancel={true}
     />
   );
 }

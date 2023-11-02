@@ -1,20 +1,24 @@
 "use client";
 import { useCallback } from "react";
-// import { AiOutlineClose } from "react-icons/ai";
 import Button from "../buttons/button";
+import { useRouter } from "next/navigation";
 
 type Props = {
-  isOpen: boolean;
-  onClose: any;
-  onSubmit: any;
-  title: string;
-  body: JSX.Element;
+  isOpen:      boolean;
+  onClose:     any;
+  onSubmit:    any;
+  title:       string;
+  body:        JSX.Element;
   actionLabel: string;
-  footer?: JSX.Element;
-  disabled: boolean;
+  footer?:     JSX.Element;
+  disabled:    boolean;
+  cancel?:     boolean;
 }
 
-function Form({ isOpen, onClose, onSubmit, title, body, actionLabel, footer, disabled }: Props) {
+function Form({ isOpen, onClose, onSubmit, title, body, actionLabel, footer, disabled, cancel }: Props) {
+  
+  const router = useRouter()
+  
   const handleClose = useCallback(() => {
     if (disabled) {
       return;
@@ -86,7 +90,6 @@ function Form({ isOpen, onClose, onSubmit, title, body, actionLabel, footer, dis
               "
               onClick={handleClose}
             >
-              {/* <AiOutlineClose size={20} /> */}
             </button>
           </div>
           {/*body*/}
@@ -95,7 +98,11 @@ function Form({ isOpen, onClose, onSubmit, title, body, actionLabel, footer, dis
           </div>
           {/*footer*/}
           <div className="flex flex-col gap-2 px-10 pb-10">
-            <Button disabled={disabled} label={actionLabel} secondary fullWidth large onClick={handleSubmit} />
+            <div className="flex flex-row justify-center gap-10">
+              <Button disabled={disabled} label={actionLabel} secondary fullWidth large onClick={handleSubmit} />
+              {cancel? 
+                <Button disabled={disabled} label={'Cancel'} secondary fullWidth large onClick={() => router.push('/')} /> : <></> }
+            </div>
             {footer}
           </div>
         </div>
