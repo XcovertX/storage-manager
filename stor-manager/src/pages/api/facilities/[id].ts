@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import dbConnect from '../../../lib/dbConnect'
-import Tenant from '../../../models/tenant'
+import dbConnect from '@/lib/dbConnect'
+import Facility  from '@/models/tenant'
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,11 +16,11 @@ export default async function handler(
   switch (method) {
     case 'GET' /* Get a model by its ID */:
       try {
-        const tenant = await Tenant.findById(id)
-        if (!tenant) {
+        const facility = await Facility.findById(id)
+        if (!facility) {
           return res.status(400).json({ success: false })
         }
-        res.status(200).json({ success: true, data: tenant })
+        res.status(200).json({ success: true, data: facility })
       } catch (error) {
         res.status(400).json({ success: false })
       }
@@ -28,14 +28,14 @@ export default async function handler(
 
     case 'PUT' /* Edit a model by its ID */:
       try {
-        const tenant = await Tenant.findByIdAndUpdate(id, req.body, {
+        const facility = await Facility.findByIdAndUpdate(id, req.body, {
           new: true,
           runValidators: true,
         })
-        if (!tenant) {
+        if (!facility) {
           return res.status(400).json({ success: false })
         }
-        res.status(200).json({ success: true, data: tenant })
+        res.status(200).json({ success: true, data: facility })
       } catch (error) {
         res.status(400).json({ success: false })
       }
@@ -43,11 +43,11 @@ export default async function handler(
 
     case 'DELETE' /* Delete a model by its ID */:
       try {
-        const deletedPet = await Tenant.deleteOne({ _id: id })
-        if (!deletedPet) {
+        const deletedFacility = await Facility.deleteOne({ _id: id })
+        if (!deletedFacility) {
           return res.status(400).json({ success: false })
         }
-        res.status(200).json({ success: true, data: {} })
+        res.status(200).json({ success: true, data: deletedFacility })
       } catch (error) {
         res.status(400).json({ success: false })
       }

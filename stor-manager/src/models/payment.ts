@@ -1,14 +1,16 @@
 import mongoose, { Document, Schema } from 'mongoose';
+import { Retail } from './retail';
+import { Rent } from './rent';
 
-export interface Payments extends Document {
+export interface Payment extends Document {
     paymentId:  string
     tenantId:   string
-    for:      { type: Schema.Types.ObjectId, ref: 'Rent' } | { type: Schema.Types.ObjectId, ref: 'Retail' }
+    for:        Rent | Retail
     type:       string
     date:       Date
 }
 
-const paymentSchema = new Schema<Payments>({
+const paymentSchema = new Schema<Payment>({
     paymentId: {
       type: String,
       required: true,
@@ -32,4 +34,4 @@ const paymentSchema = new Schema<Payments>({
     }
   });
 
-  export default mongoose.models.Payment || mongoose.model<Payments>('Payment', paymentSchema);
+  export default mongoose.models.Payment || mongoose.model<Payment>('Payment', paymentSchema);

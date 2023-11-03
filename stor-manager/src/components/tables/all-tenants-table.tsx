@@ -13,45 +13,54 @@ import {
     useReactTable,
   } from '@tanstack/react-table'
 import { ReactNode, useEffect, useState } from 'react';
-import AddToCartButton from './AddToCartButton';
-import ViewItemButton from './ViewItemButton';
-import tenant from '@/models/tenant';
+// import AddToCartButton from './AddToCartButton';
+// import ViewItemButton from './ViewItemButton';
+import { Tenant } from '@/models/tenant';
+
+type Props = {
+    tenants: Tenant[]
+}
 
 type Buttons = {
   buttons: { view: ReactNode, add: ReactNode }
 }
-type TenantRow = tenant & Buttons
+type TenantRow = {
+    id:         string
+    firstName:  string
+    lastName:   string
+    street:     string
+} 
 
   const columnHelper = createColumnHelper<TenantRow>()
   const columns = [
     columnHelper.accessor('id', {
-      header: 'Product ID'
+      header: 'Tenant Id'
     }),
-    columnHelper.accessor('name', {
-      header: 'Item Name',
+    columnHelper.accessor('firstName', {
+        header: 'First Name'
     }),
-    columnHelper.accessor('price', {
-      header: 'Price Per Item',
+    columnHelper.accessor('lastName', {
+        header: 'Last Name'
     }),
-    columnHelper.accessor('manufacturedFrom', {
-      header: 'Manufactured From',
+    columnHelper.accessor('street', {
+        header: 'Street'
     }),
-    columnHelper.accessor('buttons', {
-      header: '',
-      cell: info => {
-       return (
-        <div className="flex flex-row gap-4 justify-center">
-          {info.getValue().view}
-          {info.getValue().add}
-        </div>)
+    // columnHelper.accessor('buttons', {
+    //   header: '',
+    //   cell: info => {
+    //    return (
+    //     <div className="flex flex-row gap-4 justify-center">
+    //       {info.getValue().view}
+    //       {info.getValue().add}
+    //     </div>)
         
         
-      }
-    })
+    //   }
+    // })
   ]
 
-const AllTenants = ({ tenants }: Tenants) => {
-  const [data, setData] = useState<ProductRow[]>([])
+const AllTenants = ({ tenants }: Props) => {
+  const [data, setData] = useState<TenantRow[]>([])
     
   const table = useReactTable({
     data,
@@ -62,28 +71,19 @@ const AllTenants = ({ tenants }: Tenants) => {
   })
   
   useEffect(() => {
-    let data:ProductRow[] = [];
-    products.map((product: Product_db) => {
+    let data:TenantRow[] = [];
+    tenants.map(t => {
     data.push(
       {
-        id:               product.id,
-        name:             product.name,
-        price:            "$ " + product.price.toFixed(2),
-        manufacturedFrom: product.manufactured_from,
-        buttons:          {
-          view:             <ViewItemButton disabled={false} id={product.id}/>,
-          add:           <AddToCartButton product={{
-                                                id:    product.id,
-                                                price: product.price,
-                                                name:  product.name,
-                                                manufacturedFrom: product.manufactured_from
-                                                }} />
-        }
+        id:         t.tenantId,
+        firstName:  t.primaryContact.firstName,
+        lastName:   t.primaryContact.lastName,
+        street:     t.primaryContact.address.street
        }
     )})
     setData(data);
     table.setPageSize(20);
-  }, [products, table])
+  }, [tenants, table])
 
   // function for alternating row colors  
   function alternateColor(i:number) {

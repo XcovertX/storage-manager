@@ -33,24 +33,29 @@ const Index = ({ facilities, employees }: Props) => {
   )
 }
 
-/* Retrieves facilities data from mongodb database */
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  await dbConnect()
+// /* Retrieves facilities data from mongodb database */
+// export const getServerSideProps: GetServerSideProps<Props> = async () => {
+//   await dbConnect()
 
-  /* find all the data in the database */
-  const facilityResult = await Facility.find()
-  const employeeResult = await Employee.find()
+//   /* find all the data in the database */
+//   // const facilityResult = await Facility.find()
+//   const employeeResult = await Employee.find()
 
-  /* Ensures all objectIds and nested objectIds are serialized as JSON data */
-  const facilities = facilityResult.map((doc) => {
-    const facility = JSON.parse(JSON.stringify(doc))
-    return facility
-  })
-  const employees = employeeResult.map((doc) => {
-    const employee = JSON.parse(JSON.stringify(doc))
-    return employee
-  })
-  return { props: { facilities: facilities, employees: employees } }
-}
+//   // /* Ensures all objectIds and nested objectIds are serialized as JSON data */
+//   // const facilities = facilityResult.map((doc) => {
+//   //   const facility = JSON.parse(JSON.stringify(doc))
+//   //   return facility
+//   // })
+//   // const employees = employeeResult.map((doc) => {
+//   //   const employee = JSON.parse(JSON.stringify(doc))
+//   //   return employee
+//   // })
+//   return { props: { 
+//     // facilities: facilities, 
+//     // employees: employees 
+
+//   }
+//    }
+// }
 
 export default Index

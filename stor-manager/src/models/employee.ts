@@ -1,35 +1,22 @@
 import mongoose, { Document, Schema } from 'mongoose';
+import { Contact } from './contact';
+import { Address } from './address';
 
 // Define the schema for the Tenant model
-export interface Employees extends Document {
-  contact:  { type: Schema.Types.ObjectId, ref: 'Contact' };
-  address:  { type: Schema.Types.ObjectId, ref: 'Address' };
-  type:       string;
-  location:   string;
-  password:   string;
+export interface Employee extends Document {
+  contact:  Contact;
+  address:  Address;
+  type:     string;
+  location: string;
+  password: string;
 }
 
-const employeeSchema = new Schema<Employees>({
-  contact: {
-    type: { type: Schema.Types.ObjectId, ref: 'Contact' },
-    required: true,
-  },
-  address: {
-    type: { type: Schema.Types.ObjectId, ref: 'Address' },
-    required: true,
-  },
-  type: {
-    type: String,
-    required: true,
-  },
-  location: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
+const employeeSchema = new Schema<Employee>({
+  contact:  { type: Schema.Types.ObjectId, ref: 'Contact' },
+  address:  { type: Schema.Types.ObjectId, ref: 'Address' },
+  type:     { type: String, required: true },
+  location: { type: String, required: true },
+  password: { type: String, required: true },
 });
 
-export default mongoose.models.Employee || mongoose.model<Employees>('Employee', employeeSchema);
+export default mongoose.models.Employee || mongoose.model<Employee>('Employee', employeeSchema);

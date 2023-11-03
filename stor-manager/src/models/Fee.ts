@@ -6,14 +6,8 @@ export interface Fee extends Document {
 }
 
 const feeSchema = new Schema<Fee>({
-    type: {
-        type: String,
-        required: true
-    },
-    amount: {
-        type: Number,
-        required: true
-    }
+    type:   { type: String, required: true },
+    amount: { type: Number, required: true }
 });
 
 export default mongoose.models.Fee || mongoose.model<Fee>('Fee', feeSchema);

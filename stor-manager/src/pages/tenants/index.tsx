@@ -1,13 +1,14 @@
 import dbConnect from "@/lib/dbConnect"
 import { GetServerSideProps } from "next"
 import Tenant, { Tenants } from '@/models/tenant'
+import AllTenants from "@/components/tables/all-tenants-table"
 
 type Props = {
     tenants: Tenants[]
 }
 
 const Index = ({ tenants }: Props) => {
-    return <></>
+    return <AllTenants tenants={tenants} />
 }
 
 /* Retrieves all tenants data from mongodb database */
@@ -22,6 +23,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
       const tenant = JSON.parse(JSON.stringify(doc))
       return tenant
     })
+    console.log(tenants)
     return { props: { tenants: tenants } }
 }
 

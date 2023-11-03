@@ -1,11 +1,12 @@
 import mongoose, { Document, Schema } from 'mongoose';
+import { Address } from './address';
 
 export interface Contact extends Document {
     firstName:  string
     lastName:   string
     phone:      string
     altPhone:   string
-    address:   {type: Schema.Types.ObjectId, ref: 'Address'}
+    address:    Address
     email:      string
 }
 
@@ -26,10 +27,7 @@ firstName: {
     type: String,
     required: true,
   },
-  address: {
-    type: { type: Schema.Types.ObjectId, ref: 'Address' },
-    required: true,
-  },
+  address: { type: Schema.Types.ObjectId, ref: 'Address' },
   email: {
     type: String,
     required: true,

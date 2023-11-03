@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import dbConnect from '../../../lib/dbConnect'
-import Unit from '../../../models/unit'
+import dbConnect from '@/lib/dbConnect'
+import Unit      from '@/models/unit'
 
 export default async function handler(
   req: NextApiRequest,
@@ -43,16 +43,15 @@ export default async function handler(
 
     case 'DELETE' /* Delete a model by its ID */:
       try {
-        const deletedPet = await Unit.deleteOne({ _id: id })
-        if (!deletedPet) {
+        const deletedUnit = await Unit.deleteOne({ _id: id })
+        if (!deletedUnit) {
           return res.status(400).json({ success: false })
         }
-        res.status(200).json({ success: true, data: {} })
+        res.status(200).json({ success: true, data: deletedUnit })
       } catch (error) {
         res.status(400).json({ success: false })
       }
       break
-
     default:
       res.status(400).json({ success: false })
       break

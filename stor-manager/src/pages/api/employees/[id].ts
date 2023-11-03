@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import Employee from '@/models/employee'
+import Employee  from '@/models/employee'
 import dbConnect from '@/lib/dbConnect'
 
 export default async function handler(

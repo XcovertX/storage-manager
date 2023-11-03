@@ -1,13 +1,18 @@
 import mongoose, { Document, Schema } from 'mongoose';
+import { Address } from './address';
+import { Tenant } from './tenant';
+import { Employee } from './employee';
+import { Inventory } from './inventory';
+import { Unit } from './unit';
 
 export interface Facilities extends Document {
-  name:          string;
-  email:         string;
-  address:     { type: Schema.Types.ObjectId, ref: 'Address'   };
-  units:       { type: Schema.Types.ObjectId, ref: 'Units'     };
-  tenants:   [ { type: Schema.Types.ObjectId, ref: 'Tenant'    } ];
-  employees: [ { type: Schema.Types.ObjectId, ref: 'Employee'  } ];
-  inventory:   { type: Schema.Types.ObjectId, ref: 'Inventory' };
+  name:       string;
+  email:      string;
+  address:    Address;
+  units:      Unit[];
+  tenants:    Tenant[];
+  employees:  Employee[];
+  inventory:  Inventory;
 }
 
 const facilitySchema = new Schema<Facilities>({
@@ -20,26 +25,12 @@ const facilitySchema = new Schema<Facilities>({
     required: true,
     unique: true,
   },
-  address: {
-    type: { type: Schema.Types.ObjectId, ref: 'Address' },
-    required: true
-  },
-  units: {
-    units: [ { type: Schema.Types.ObjectId, ref: 'Units' } ],
-    required: true
-  },
-  tenants: {
-    type: [ { type: Schema.Types.ObjectId, ref: 'Tenant' } ],
-    required: true
-  },
-  employees: {
-    type: [ { type: Schema.Types.ObjectId, ref: 'Employee' } ],
-    required: true
-  },
-  inventory: {
-    type: [ { type: Schema.Types.ObjectId, ref: 'Inventory' } ],
-    required: true
-  }
+  address:      { type: Schema.Types.ObjectId, ref: 'Address'   },
+  units:      [ { type: Schema.Types.ObjectId, ref: 'Unit'      } ],
+  tenants:    [ { type: Schema.Types.ObjectId, ref: 'Tenant'    } ],
+  employees:  [ { type: Schema.Types.ObjectId, ref: 'Employee'  } ],
+  inventory:  [ { type: Schema.Types.ObjectId, ref: 'Inventory' } ],
+
 });
 
 export default mongoose.models.Facility || mongoose.model<Facilities>('Facility', facilitySchema);

@@ -9,21 +9,10 @@ export interface UnitHistoryLogItem extends Document {
 }
 
 const unitHistoryLogItemSchema = new Schema<UnitHistoryLogItem>({
-  type: {
-    type: String,
-    required: true,
-  },
-  tenantId: {
-    type: String,
-    required: true,
-  },
-  fromDate: {
-    type: Date,
-    required: true,
-  },
-  toDate: {
-    type: Date
-  },
+  type:     { type: String, required: true },
+  tenantId: { type: String, required: true },
+  fromDate: { type: Date,   required: true },
+  toDate:   { type: Date },
 });
 
 export default mongoose.models.UnitHistoryLogItem || mongoose.model<UnitHistoryLogItem>('UnitHistoryLogItem', unitHistoryLogItemSchema);
