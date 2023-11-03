@@ -1,38 +1,22 @@
 import mongoose, { Document, Schema } from 'mongoose';
-import { Address } from './address';
 
 // Define the schema for the Tenant model
 export interface Employees extends Document {
-  name:     string;
-  email:    string;
-  address:  Address;
-  phone:    number;
-  type:     string;
-  location: string;
-  password: string;
+  contact:  { type: Schema.Types.ObjectId, ref: 'Contact' };
+  address:  { type: Schema.Types.ObjectId, ref: 'Address' };
+  type:       string;
+  location:   string;
+  password:   string;
 }
 
 const employeeSchema = new Schema<Employees>({
-  name: {
-    type: String,
+  contact: {
+    type: { type: Schema.Types.ObjectId, ref: 'Contact' },
     required: true,
   },
-  email: {
-    type: String,
+  address: {
+    type: { type: Schema.Types.ObjectId, ref: 'Address' },
     required: true,
-    unique: true,
-  },
-  address: new Schema<Address>({
-    street:   String, 
-    street2:  String,
-    city:     String,
-    state:    String,
-    zipcode:  Number
-  }),
-  phone: {
-    type: Number,
-    required: true,
-    unique: true,
   },
   type: {
     type: String,

@@ -1,14 +1,13 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface Unit extends Document {
-  type:           string;
-  number:         number;
-  floor:          number;
-  status:         string;
-  length:         number;
-  width:          number;
-  currentTenant: {type: Schema.Types.ObjectId, ref: 'Tenant'};
-  pastTenants:  [{type: Schema.Types.ObjectId, ref: 'Tenant'}];
+  type:             string;
+  number:           number;
+  floor:            number;
+  status:           string;
+  length:           number;
+  width:            number;
+  unitHistory:  [ { type: Schema.Types.ObjectId, ref: 'UnitHistoryLogItem' } ]
 }
 
 const unitSchema = new Schema<Unit>({
@@ -18,32 +17,28 @@ const unitSchema = new Schema<Unit>({
   },
   floor: {
     type: Number,
-    required: true,
+    required: true
   },
   status: {
     type: String,
-    required: true,
+    required: true
   },
   number: {
     type: Number,
-    required: true,
+    required: true
   },
   length: {
     type: Number,
-    required: true,
+    required: true
   },
   width: {
     type: Number,
-    required: true,
+    required: true
   },
-  currentTenant: {
-    type: Schema.Types.ObjectId, 
-    ref: 'Tenant'
-  },
-  pastTenants:  [{
-    type: Schema.Types.ObjectId, 
-    ref: 'Tenant'
-  }]
+  unitHistory: {
+    type: [ { type: Schema.Types.ObjectId, ref: 'UnitHistoryLogItem' } ],
+    required: true
+  }
 });
 
 export default mongoose.models.Unit || mongoose.model<Unit>('Unit', unitSchema);

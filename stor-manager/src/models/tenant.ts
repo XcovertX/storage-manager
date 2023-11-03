@@ -2,61 +2,94 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 // Define the schema for the Tenant model
 export interface Tenants extends Document {
-  name:          string;
-  email:         string;
-  phone:         number;
-  address:      {type: Schema.Types.ObjectId, ref: 'Address'}
-  storageUnit: [{type: Schema.Types.ObjectId, ref: 'Unit'}];
-  gateAccess1:   number;
-  gateAccess2?:  number;
-  password:      string;
-  moveInDate:    Date;
-  moveOutDate?:  Date;
+  tenantId:           string;
+  primaryContact:   { type: Schema.Types.ObjectId, ref: 'Contact' }
+  altContact:       { type: Schema.Types.ObjectId, ref: 'Contact' }
+  storageUnits:   [ { type: Schema.Types.ObjectId, ref: 'Unit'    } ];
+  gateAccess:         string;
+  altGateAccess?:     string;
+  password:           string;
+  startDate:          Date;
+  status:             string;
+  military?:        { type: Schema.Types.ObjectId, ref: 'Military' };
+  property:         { type: Schema.Types.ObjectId, ref: 'Property' };
+  paymentHistory: [ { type: Schema.Types.ObjectId, ref: 'Payment'  } ];
+  notes:          [ { type: Schema.Types.ObjectId, ref: 'Note'     } ];
+  cards:          [ { type: Schema.Types.ObjectId, ref: 'Card'     } ];
+  unpaidRent:     [ { type: Schema.Types.ObjectId, ref: 'Rent'     } ];
+  autopay:        [ { type: Schema.Types.ObjectId, ref: 'AutoPay'  } ];
+  tenantHistory:  [ { type: Schema.Types.ObjectId, ref: 'TenantHistoryLogItem' } ];
 }
 
 const tenantSchema = new Schema<Tenants>({
-  name: {
+  tenantId: {
     type: String,
     required: true,
+    unique:   true
   },
-  email: {
+  primaryContact: {
+    type: { type: Schema.Types.ObjectId, ref: 'Contact' },
+    required: true
+  },
+  altContact: {
+    type: { type: Schema.Types.ObjectId, ref: 'Contact' },
+  },
+  storageUnits: {
+    type: [ { type: Schema.Types.ObjectId, ref: 'Unit' } ],
+    required: true,
+  },
+  gateAccess: {
     type: String,
     required: true,
     unique: true,
   },
-  phone: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  address: {
-    type: {type: Schema.Types.ObjectId, ref: 'Address'},
-    required: true,
-  },
-  storageUnit: {
-    type: [{type: Schema.Types.ObjectId, ref: 'Address'}],
-    required: true,
-  },
-  gateAccess1: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  gateAccess2: {
-    type: Number,
+  altGateAccess: {
+    type: String,
     unique: true,
   },
   password: {
     type: String,
     required: true,
   },
-  moveInDate: {
+  startDate: {
     type: Date,
     required: true,
   },
-  moveOutDate: {
-    type: Date,
+  status: {
+    type: String,
+    required: true
   },
+  military: {
+    type: { type: Schema.Types.ObjectId, ref: 'Military' },
+  },
+  property: {
+    type: { type: Schema.Types.ObjectId, ref: 'Property' },
+    required: true
+  },
+  paymentHistory: {
+    type: [ { type: Schema.Types.ObjectId, ref: 'Payment' } ],
+    required: true
+  },
+  notes: {
+    type: [ { type: Schema.Types.ObjectId, ref: 'Note' } ],
+    required: true
+  },
+  cards: {
+    type: [ { type: Schema.Types.ObjectId, ref: 'Card' } ],
+    required: true
+  },
+  unpaidRent: {
+    type: [ { type: Schema.Types.ObjectId, ref: 'Rent' } ],
+    required: true
+  },
+  autopay: {
+    type: [ { type: Schema.Types.ObjectId, ref: 'AutoPay' } ],
+    required: true
+  },
+  tenantHistory: {
+    type: [ { type: Schema.Types.ObjectId, ref: 'TenantHistoryLogItem' } ],
+    required: true
+  }
 });
 
 export default mongoose.models.Tenant || mongoose.model<Tenants>('Tenant', tenantSchema);

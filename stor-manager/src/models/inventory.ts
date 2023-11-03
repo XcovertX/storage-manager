@@ -2,52 +2,52 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 // Define the schema for the Tenant model
 export interface Inventory extends Document {
-  ezLock: number;
-  smBox: number;
-  mdBox: number;
-  lgBox: number;
-  xlBox: number;
-  wrappingPaper5: number;
-  wrappingPaper10: number;
-  tapeHD3M: number;
-  clearTapeBonusPack: number;
+  ezLock:             string;
+  smBox:              string;
+  mdBox:              string;
+  lgBox:              string;
+  xlBox:              string;
+  wrappingPaper5:     string;
+  wrappingPaper10:    string;
+  tapeHD3M:           string;
+  clearTapeBonusPack: string;
 }
 
 const inventorySchema = new Schema<Inventory>({
   ezLock: {
-    type: Number,
+    type: String,
     required: true,
   },
   smBox: {
-    type: Number,
+    type: String,
     required: true,
   },
   mdBox: {
-    type: Number,
+    type: String,
     required: true,
   },
   lgBox: {
-    type: Number,
+    type: String,
     required: true,
   },
   xlBox: {
-    type: Number,
+    type: String,
     required: true,
   },
   wrappingPaper5: {
-    type: Number,
+    type: String,
     required: true,
   },
   wrappingPaper10: {
-    type: Number,
+    type: String,
     required: true,
   },
   tapeHD3M: {
-    type: Number,
+    type: String,
     required: true,
   },
   clearTapeBonusPack: {
-    type: Number,
+    type: String,
     required: true,
   },
 });

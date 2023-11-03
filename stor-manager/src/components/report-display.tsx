@@ -1,4 +1,4 @@
-import { DemandReport } from "@/types/report"
+import { DemandReport } from "@/models/report"
 
 type Props = {
     report: DemandReport

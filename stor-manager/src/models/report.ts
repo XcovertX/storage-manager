@@ -1,6 +1,6 @@
 import { Units } from "@/models/units"
-import { Unit } from "./unit"
-import { Tenant } from "./tenant"
+import { Unit } from "../types/unit"
+import { Tenant } from "../types/tenant"
 
 export type DemandReport = {
     startDate:  Date
