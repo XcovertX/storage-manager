@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 import { Discount } from './discount';
-import { Fee } from './Fee';
+import { Fee } from './fee';
 
 export interface Rent extends Document {
     tenantId:      string

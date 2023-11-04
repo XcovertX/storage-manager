@@ -76,9 +76,9 @@ const AllTenants = ({ tenants }: Props) => {
     data.push(
       {
         id:         t.tenantId,
-        firstName:  t.primaryContact.firstName,
-        lastName:   t.primaryContact.lastName,
-        street:     t.primaryContact.address.street
+        firstName:  t.primaryContact?.firstName,
+        lastName:   t.primaryContact?.lastName,
+        street:     t.primaryContact?.address?.street
        }
     )})
     setData(data);

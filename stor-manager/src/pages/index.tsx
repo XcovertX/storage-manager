@@ -8,13 +8,13 @@ import Head from 'next/head'
 import Container from '@/components/container'
 import ManagerDashboardPage from './manager-dashboard'
 import { useSession } from "next-auth/react"
-import Employee, { Employees } from '@/models/employee'
+import Employee, { Employee as E } from '@/models/employee'
 import Login from '@/components/buttons/login-btn'
 import NewTenant from '@/components/forms/new-tenant-form'
 
 type Props = {
   facilities: Facilities[];
-  employees:  Employees[]
+  employees:  E[]
 }
 
 const Index = ({ facilities, employees }: Props) => {
@@ -27,7 +27,7 @@ const Index = ({ facilities, employees }: Props) => {
       </Head>
       <Container>
         {data?.accessToken? 
-        <ManagerDashboardPage /> : <Login/> }
+        <NewTenant /> : <Login/> }
       </Container>
     </>
   )

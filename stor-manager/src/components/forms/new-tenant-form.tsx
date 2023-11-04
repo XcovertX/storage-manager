@@ -22,16 +22,18 @@ function NewTenant({ unit }: Props) {
   const [email, setEmail]             = useState("");
   const [firstName, setFirstName]     = useState("");
   const [lastName, setLastName]       = useState("");
-  const [address, setAddress]         = useState("");
+  const [street, setStreet]           = useState("");
   const [city, setCity]               = useState("");
   const [state, setState]             = useState("");
   const [country, setCountry]         = useState("");
   const [zipcode, setZip]             = useState("");
   const [units, setUnits]             = useState<string[]>([])
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phone, setPhone]             = useState("");
+  const [altPhone, setAltPhone]       = useState("");
   const [isLoading, setIsLoading]     = useState(false);
   const [demandType, setDemandType]   = useState('');
   const [gateAccess, setGateAccess]   = useState('');
+  const [altGate, setAltGateAccess]   = useState('');
   const useRegisterModal:any          = useRegister();
   const useLoginModal:any             = useLogin();
 
@@ -43,21 +45,23 @@ function NewTenant({ unit }: Props) {
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("pages/api/tenants", {
+      const response = await fetch("/api/tenants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email,
           firstName,
           lastName,
-          phoneNumber,
-          address,
+          phone,
+          altPhone,
+          street,
           city,
           country,
           state,
           zipcode,
           demandType,
           gateAccess,
+          altGate,
           units
         }),
       });
@@ -75,14 +79,16 @@ function NewTenant({ unit }: Props) {
     email,
     firstName,
     lastName,
-    phoneNumber,
-    address,
+    phone,
+    altPhone,
+    street,
     city,
     country,
     state,
     zipcode,
     demandType,
     gateAccess,
+    altGate,
     units
     ]
   );
@@ -114,22 +120,22 @@ function NewTenant({ unit }: Props) {
         <Phone
           placeholder="Primary Phone"
           type="text"
-          value={phoneNumber}
-          onChange={setPhoneNumber}
+          value={phone}
+          onChange={setPhone}
         />
         <Phone
           placeholder="Alternate Phone"
           type="text"
-          value={phoneNumber}
-          onChange={setPhoneNumber}
+          value={altPhone}
+          onChange={setAltPhone}
         />
         <Seperator label="address" color="border-neutral-500/[.7]" />
         <Address 
-          address={address}
+          address={street}
           city={city}
           state={state}
           zipcode={zipcode}
-          setAddress={setAddress}
+          setAddress={setStreet}
           setCity={setCity}
           setZipcode={setZip}
           setState={setState}
@@ -151,7 +157,8 @@ function NewTenant({ unit }: Props) {
           setDemand={setDemandType}
         />
         <Seperator label="Gate Access" color="border-neutral-500/[.7]" />
-        <GateAccess accessNumber={gateAccess} setAccessNumber={setGateAccess} />
+        <GateAccess plholder="Gate Access"     accessNumber={gateAccess} setAccessNumber={setGateAccess} />
+        <GateAccess plholder="Alt Gate Access" accessNumber={altGate}    setAccessNumber={setAltGateAccess} />
       </div>
     </div>
   );

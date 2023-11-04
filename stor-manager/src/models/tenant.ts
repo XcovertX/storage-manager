@@ -1,5 +1,4 @@
 import mongoose, { Document, Schema } from 'mongoose';
-import { Address } from './address';
 import { Contact } from './contact';
 import { Unit } from './unit';
 import { Military } from './military';
